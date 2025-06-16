@@ -1,22 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [quote, setQuote] = useState("");
+  const [quote, setQuote] = useState("Loading...");
   const [author, setAuthor] = useState("");
-  const [error, setError] = useState(false);
 
   const fetchQuote = async () => {
-    setError(false);
     try {
-      const res = await fetch("https://api.quotable.io/random");
-      if (!res.ok) throw new Error("Fetch failed");
+      const res = await fetch("https://zenquotes.io/api/random");
       const data = await res.json();
-      setQuote(data.content);
-      setAuthor(data.author);
+      setQuote(data[0].q);
+      setAuthor(data[0].a);
     } catch (err) {
-      setError(true);
-      setQuote("Something went wrong. Please try again.");
+      setQuote("Could not fetch quote. Please try again.");
       setAuthor("😔");
     }
   };
@@ -27,9 +23,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>💬 Daily Quote</h1>
+      <h1>🌟 Daily Quote</h1>
       <div className="quote-box">
-        <p className="quote">{quote}</p>
+        <p className="quote">“{quote}”</p>
         <p className="author">— {author}</p>
       </div>
       <button onClick={fetchQuote}>New Quote 🔁</button>
