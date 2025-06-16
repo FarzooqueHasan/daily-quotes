@@ -7,7 +7,9 @@ function App() {
 
   const fetchQuote = async () => {
     try {
-      const res = await fetch("https://zenquotes.io/api/random");
+      const res = await fetch(
+        "https://api.allorigins.win/raw?url=https://zenquotes.io/api/random"
+      );
       const data = await res.json();
       setQuote(data[0].q);
       setAuthor(data[0].a);
