@@ -46,9 +46,14 @@ h1 {
 .fallback-note {
   margin-top: 15px;
   font-size: 0.9rem;
-  color: #c0392b;
+  color: #b00020; /* Deep red for warning */
   font-style: italic;
+  background-color: #fff3f3;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+
 
 button {
   padding: 10px 20px;
